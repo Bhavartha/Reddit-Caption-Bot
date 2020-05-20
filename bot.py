@@ -50,7 +50,6 @@ def make_gif(gif_path,text,font,padx=10,pady=10,op_filename='output.gif'):
 
     # open the image file
     img = Image.open(requests.get(gif_path, stream=True).raw)
-    print('Making gif')
     # Calculate width of top-caption image
     width = img.size[0]
 
@@ -116,7 +115,6 @@ subreddit = reddit.subreddit("DarqWolff")
 for comment in subreddit.stream.comments(skip_existing=True):
     if "u/gifcaptionbot" in comment.body:
         try:
-            comment.reply('working')
             lst = [_.strip() for _ in comment.body.split('\n') if _.strip()!='']
             print(lst)
             index = lst.index("[u/gifcaptionbot](https://www.reddit.com/u/gifcaptionbot/)")
@@ -132,6 +130,7 @@ for comment in subreddit.stream.comments(skip_existing=True):
 
             font_file_path = "Roboto-Medium.ttf"
             font = ImageFont.truetype(font_file_path,font_size)
+            comment.reply('working')
             make_gif(gif_path,text,font)
             link = uploadgif()
             print(link)
