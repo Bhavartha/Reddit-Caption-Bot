@@ -46,7 +46,7 @@ def line_split(text, font, max_width):
             lines.append(line)
     return lines
 
-def make_gif(gif_path,text,font,padx=10,pady=10,op_filename='output.gif'):
+def make_gif(gif_path,text,font,padx=10,pady=10,op_filename='/tmp/output.gif'):
 
     # open the image file
     img = Image.open(requests.get(gif_path, stream=True).raw)
@@ -121,12 +121,12 @@ for comment in subreddit.stream.comments(skip_existing=True):
 
             gif_path = str(lst[index+1])
             gif_path = gif_path[gif_path.index('(')+1:gif_path.index(')')]
-            print(gif_path)
+            comment.reply(gif_path)
             text=str(lst[index+2])
-            print(text)
+            comment.reply(text)
 
             font_size = int(lst[index+3])
-            print(font_size)
+            comment.reply(font_size)
 
             font_file_path = "Roboto-Medium.ttf"
             font = ImageFont.truetype(font_file_path,font_size)
