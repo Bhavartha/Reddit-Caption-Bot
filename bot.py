@@ -116,6 +116,7 @@ subreddit = reddit.subreddit("DarqWolff")
 for comment in subreddit.stream.comments(skip_existing=True):
     if "u/gifcaptionbot" in comment.body:
         try:
+            comment.reply('working')
             lst = [_.strip() for _ in comment.body.split('\n') if _.strip()!='']
             print(lst)
             index = lst.index("[u/gifcaptionbot](https://www.reddit.com/u/gifcaptionbot/)")
