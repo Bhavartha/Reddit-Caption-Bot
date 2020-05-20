@@ -118,22 +118,25 @@ for comment in subreddit.stream.comments(skip_existing=True):
             lst = [_.strip() for _ in comment.body.split('\n') if _.strip()!='']
             print(lst)
             index = lst.index("[u/gifcaptionbot](https://www.reddit.com/u/gifcaptionbot/)")
-            comment.reply(lst)
+            
             gif_path = str(lst[index+1])
             gif_path = gif_path[gif_path.index('(')+1:gif_path.index(')')]
+            print(gif_path)
 #             comment.reply(gif_path)
+            
             text=str(lst[index+2])
+            print(text)
 #             comment.reply(text)
-
+            
             font_size = int(lst[index+3])
+            print(font_size)
 #             comment.reply(font_size)
-
+            
             font_file_path = "Roboto-Medium.ttf"
             font = ImageFont.truetype(font_file_path,font_size)
-            comment.reply('working')
             make_gif(gif_path,text,font)
             link = uploadgif()
             print(link)
             comment.reply(link)
-        except:
-            pass
+        except Exception as e:
+            print(e)
