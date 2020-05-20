@@ -121,7 +121,7 @@ for comment in subreddit.stream.comments(skip_existing=True):
 
             gif_path = str(lst[index+1])
             gif_path = gif_path[gif_path.index('(')+1:gif_path.index(')')]
-#             comment.reply(gif_path)
+            comment.reply(gif_path)
             text=str(lst[index+2])
             comment.reply(text)
 
