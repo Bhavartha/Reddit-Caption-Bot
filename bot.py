@@ -146,6 +146,6 @@ for comment in subreddit.stream.comments(skip_existing=True):
             make_gif(gif_path,text,font)
             link = uploadgif()
             print(link)
-            comment.reply(link+autoreply)
+            comment.reply(link)
         except Exception as e:
             print(e)
