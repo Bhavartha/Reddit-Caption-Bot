@@ -46,7 +46,7 @@ def line_split(text, font, max_width):
             lines.append(line)
     return lines
 
-def make_gif(gif_path,text,font,padx=10,pady=10,op_filename='/tmp/output.gif'):
+def make_gif(gif_path,text,font,padx=10,pady=10):
 
     # open the image file
     img = Image.open(requests.get(gif_path, stream=True).raw)
@@ -79,7 +79,7 @@ def make_gif(gif_path,text,font,padx=10,pady=10,op_filename='/tmp/output.gif'):
         pass # end of sequence
 
     # Saving the new gif
-    op_gif[0].save(op_filename,save_all=True, append_images=op_gif[1:], loop=0)
+    op_gif[0].save('/app/tmp/output.gif',save_all=True, append_images=op_gif[1:], loop=0)
 
 # Upload image to imagebb
 
@@ -87,7 +87,7 @@ url = f"https://api.imgbb.com/1/upload"
 
 import base64
 def uploadgif():
-    with open("output.gif", "rb") as file:
+    with open("/app/tmp/output.gif", "rb") as file:
         payload = {
             "key": imgbb_key,
             "image": base64.b64encode(file.read()),
