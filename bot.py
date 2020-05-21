@@ -122,11 +122,11 @@ reddit = praw.Reddit(user_agent="Gif caption by Bhavartha",
 subreddit = reddit.subreddit("Memes_Of_The_Dank")
 
 for comment in subreddit.stream.comments(skip_existing=True):
-    if "u/gifcaptionbot" in comment.body:
+    if "!gifcaptionbot" in comment.body:
         try:
             lst = [_.strip() for _ in comment.body.split('\n') if _.strip()!='']
             print(lst)
-            index = lst.index("[u/gifcaptionbot](https://www.reddit.com/u/gifcaptionbot/)")
+            index = lst.index("!gifcaptionbot")
             
             gif_path = str(lst[index+1])
             gif_path = gif_path[gif_path.index('(')+1:gif_path.index(')')]
