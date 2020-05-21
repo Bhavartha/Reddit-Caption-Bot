@@ -110,7 +110,7 @@ reddit = praw.Reddit(user_agent="Gif caption by Bhavartha",
                      client_id=reddit_client_id, client_secret=reddit_client_secret,
                      username=reddit_username, password=reddit_password)
 
-subreddit = reddit.subreddit("DarqWolff")
+subreddit = reddit.subreddit("all")
 
 for comment in subreddit.stream.comments(skip_existing=True):
     if "u/gifcaptionbot" in comment.body:
