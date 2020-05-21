@@ -120,7 +120,7 @@ reddit = praw.Reddit(user_agent="Gif caption by Bhavartha",
                      client_id=reddit_client_id, client_secret=reddit_client_secret,
                      username=reddit_username, password=reddit_password)
 
-subreddit = reddit.subreddit("Memes_Of_The_Dank")
+subreddit = reddit.subreddit("dankmemes")
 
 for comment in subreddit.stream.comments(skip_existing=True):
     if "!gifcaptionbot" in comment.body:
@@ -147,6 +147,6 @@ for comment in subreddit.stream.comments(skip_existing=True):
             make_gif(gif_path,text,font)
             link = uploadgif()
             print(link)
-            comment.reply(link+autoreply)
+            comment.reply(link)
         except Exception as e:
             print(e)
