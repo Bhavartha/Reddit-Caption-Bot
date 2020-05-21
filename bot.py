@@ -68,19 +68,20 @@ def make_gif(gif_path,text,font,padx=10,pady=10):
         y_pos+= font.getsize(line)[1] # Move to next line
 
     op_gif = []
-
+    duration=[]
     try:
         while True:
             img.seek(img.tell()+1) # Seek next frame
-            img.convert('RGB')
-            new_frame = combine(caption_image,img) # Get combined image
-            op_gif.append(new_frame.convert('RGB')) # Append frame to new gif
+            duration.append(img.info['duration']) 
+            new_frame= combine(caption_image,img)# Get combined image
+            op_gif.append(new_frame) # Append frame to new gif
     except EOFError:
         pass # end of sequence
-
+    
     # Saving the new gif
-    op_gif[0].save('/app/tmp/output.gif',save_all=True, append_images=op_gif[1:], loop=0)
-
+    op_gif[0].save(op_filename,save_all=True, append_images=op_gif[1:], loop=0,duration=duration)
+    
+    
 # Upload image to imagebb
 
 url = f"https://api.imgbb.com/1/upload"
@@ -146,6 +147,6 @@ for comment in subreddit.stream.comments(skip_existing=True):
             make_gif(gif_path,text,font)
             link = uploadgif()
             print(link)
-            comment.reply(link)
+            comment.reply(link+autoreply)
         except Exception as e:
             print(e)
