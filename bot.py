@@ -122,30 +122,17 @@ reddit = praw.Reddit(user_agent="Gif caption by Bhavartha",
 
 
 for msg in reddit.inbox.stream(skip_existing=True):
-    if "!gifcaptionbot" in msg.body:
-        try:
-            lst = [_.strip() for _ in msg.body.split('\n') if _.strip()!='']
-            print(lst)
-            index = lst.index("!gifcaptionbot")
-            
-            gif_path = str(lst[index+1])
-            gif_path = gif_path[gif_path.index('(')+1:gif_path.index(')')]
-            print(gif_path)
-#             comment.reply(gif_path)
-            
-            text=str(lst[index+2])
-            print(text)
-#             comment.reply(text)
-            
-            font_size = int(lst[index+3])
-            print(font_size)
-#             comment.reply(font_size)
-            
-            font_file_path = "Roboto-Medium.ttf"
-            font = ImageFont.truetype(font_file_path,font_size)
-            make_gif(gif_path,text,font)
-            link = uploadgif()
-            print(link)
-            msg.reply(link)
-        except Exception as e:
-            print(e)
+    try:
+        msg.reply('Working...')
+        lst = [_.strip() for _ in msg.body.split('\n') if _.strip()!='']
+        gif_path = str(lst[0])
+        gif_path = gif_path[gif_path.index('(')+1:gif_path.index(')')]
+        text=str(lst[1])
+        font_size = int(lst[2])
+        font_file_path = "Roboto-Medium.ttf"
+        font = ImageFont.truetype(font_file_path,font_size)
+        make_gif(gif_path,text,font)
+        link = uploadgif()
+        msg.reply(link)
+    except Exception as e:
+        print(e)
