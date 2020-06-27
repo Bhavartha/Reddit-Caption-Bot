@@ -123,7 +123,7 @@ for comment in reddit.inbox.stream(skip_existing=True):
             lst = [_.strip() for _ in comment.body.split('\n') if _.strip() not in ['','&#x200B;']]
 #             print(lst)
             
-            index = lst.index("u/gifcaptionbot")
+            index = 0
             
             gif_path = str(lst[index+2])
             gif_path = gif_path[gif_path.index('(')+1:gif_path.index(')')]
@@ -131,7 +131,7 @@ for comment in reddit.inbox.stream(skip_existing=True):
             
             text=str(lst[index+1])
 #             print(text)
-            
+            comment.reply("Making gif...\n\n"+text+"\n\n"+gifpath)
             make_gif(gif_path,text)
             link = uploadgif()
             print(link)
