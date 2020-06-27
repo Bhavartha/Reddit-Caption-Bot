@@ -119,7 +119,7 @@ reddit = praw.Reddit(user_agent="Gif caption by Bhavartha",
 
 for comment in reddit.inbox.stream(skip_existing=True):
         try:
-            comment.reply("Makin...")
+#             comment.reply("Makin...")
             lst = [_.strip() for _ in comment.body.split('\n') if _.strip() not in ['','&#x200B;']]
 #             print(lst)
             
@@ -127,14 +127,14 @@ for comment in reddit.inbox.stream(skip_existing=True):
             
             gif_path = str(lst[index+2])
             gif_path = gif_path[gif_path.index('(')+1:gif_path.index(')')]
-            comment.reply(gif_path)
+#             comment.reply(gif_path)
             
             text=str(lst[index+1])
-            comment.reply(text)
+#             comment.reply(text)
             
             make_gif(gif_path,text)
             link = uploadgif()
-            print(link)
+#             print(link)
             comment.reply(link+autoreply)
         except Exception as e:
             print(e)
