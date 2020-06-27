@@ -79,7 +79,7 @@ def make_gif(gif_path,text,padx=10,pady=10):
         pass # end of sequence
     
     # Saving the new gif
-    op_gif[0].save(op_filename,save_all=True, append_images=op_gif[1:], loop=0,duration=duration)
+    op_gif[0].save("/app/tmp/output.gif",save_all=True, append_images=op_gif[1:], loop=0,duration=duration)
     
     
 # Upload image to imagebb
