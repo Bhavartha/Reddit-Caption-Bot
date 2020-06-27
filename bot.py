@@ -119,19 +119,19 @@ reddit = praw.Reddit(user_agent="Gif caption by Bhavartha",
 
 for comment in reddit.inbox.stream(skip_existing=True):
         try:
-#             print(comment.body)
+            comment.reply("Makin...")
             lst = [_.strip() for _ in comment.body.split('\n') if _.strip() not in ['','&#x200B;']]
 #             print(lst)
             
-            index = 0
+            index = lst.index("u/gifcaptionbot")
             
             gif_path = str(lst[index+2])
             gif_path = gif_path[gif_path.index('(')+1:gif_path.index(')')]
-#             print(gif_path)
+            comment.reply(gif_path)
             
             text=str(lst[index+1])
-#             print(text)
-            comment.reply("Making gif...\n\n"+text+"\n\n"+gifpath)
+            comment.reply(text)
+            
             make_gif(gif_path,text)
             link = uploadgif()
             print(link)
